@@ -14,8 +14,6 @@ import typing as tp
 
 import torch
 import yaml
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
 
 from .apply import BagOfModels, Model
 from .states import load_model
