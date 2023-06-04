@@ -14,6 +14,8 @@ import typing as tp
 
 import torch
 import yaml
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 from .apply import BagOfModels, Model
 from .states import load_model
@@ -63,7 +65,7 @@ class RemoteRepo(ModelOnlyRepo):
         except KeyError:
             raise ModelLoadingError(f'Could not find a pre-trained model with signature {sig}.')
         pkg = torch.hub.load_state_dict_from_url(
-            url, map_location='cpu', check_hash=False)  # type: ignore
+            url, map_location='cpu', check_hash=True)  # type: ignore
         return load_model(pkg)
 
 
