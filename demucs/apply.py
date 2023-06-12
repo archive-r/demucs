@@ -237,7 +237,10 @@ def apply_model(model: tp.Union[BagOfModels, Model],
         assert len(weight) == segment_length
         # If the overlap < 50%, this will translate to linear transition when
         # transition_power is 1.
-        weight = (weight / weight.max())**transition_power
+        try:
+            weight = (weight / weight.max())**transition_power
+        except UserWarning:
+            pass
         futures = []
         for offset in offsets:
             chunk = TensorChunk(mix, offset, segment_length)
