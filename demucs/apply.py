@@ -251,7 +251,7 @@ def apply_model(model: tp.Union[BagOfModels, Model],
             futures = tqdm.tqdm(
                 futures, 
                 unit_scale=scale, 
-                ncols=80, 
+                dynamic_ncols=True,
                 desc="Demucs",
                 unit='secs',
                 leave=False,
