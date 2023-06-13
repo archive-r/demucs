@@ -257,7 +257,7 @@ def apply_model(model: tp.Union[BagOfModels, Model],
                 leave=False,
                 position=0,
                 colour='yellow',
-                bar_format="{desc}: {percentage:3.0f}%|{bar}| {n:.0f}/{total:.0f} [{elapsed}<{remaining},{rate_fmt}{postfix}]")
+                bar_format="{desc}: {percentage:3.0f}%|{bar}| {n:.0f}/{total:.0f} [{elapsed}<{remaining}, {rate_fmt}{postfix}]")
         for future, offset in futures:
             chunk_out = future.result()
             chunk_length = chunk_out.shape[-1]
