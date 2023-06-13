@@ -239,7 +239,7 @@ def apply_model(model: tp.Union[BagOfModels, Model],
         # transition_power is 1.
         try:
             weight = (weight / weight.max())**transition_power
-        except UserWarning:
+        except Warning:
             pass
         futures = []
         for offset in offsets:
