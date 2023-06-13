@@ -247,13 +247,16 @@ def apply_model(model: tp.Union[BagOfModels, Model],
             future = pool.submit(apply_model, model, chunk, **kwargs)
             futures.append((future, offset))
             offset += segment_length
-        # if progress:
-        #     futures = tqdm.tqdm(
-        #         futures, 
-        #         unit_scale=scale, 
-        #         ncols=80, 
-        #         unit='secs',
-        #         bar_format="{desc}: {percentage:3.0f}%|{bar}| {n:.0f}/{total:.0f} [{elapsed}<{remaining},{rate_fmt}{postfix}]")
+        if progress:
+            futures = tqdm.tqdm(
+                futures, 
+                unit_scale=scale, 
+                ncols=80, 
+                unit='secs',
+                leave=False,
+                position=0,
+                colour='yellow',
+                bar_format="{desc}: {percentage:3.0f}%|{bar}| {n:.0f}/{total:.0f} [{elapsed}<{remaining},{rate_fmt}{postfix}]")
         for future, offset in futures:
             chunk_out = future.result()
             chunk_length = chunk_out.shape[-1]
