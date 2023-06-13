@@ -255,7 +255,7 @@ def apply_model(model: tp.Union[BagOfModels, Model],
                 desc="Demucs",
                 unit='secs',
                 leave=False,
-                position=2,
+                position=0,
                 colour='yellow',
                 bar_format="{desc}: {percentage:3.0f}%|{bar}| {n:.0f}/{total:.0f} [{elapsed}<{remaining},{rate_fmt}{postfix}]")
         for future, offset in futures:
